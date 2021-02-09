@@ -1,0 +1,76 @@
+.heart-drop{
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+        .heart-wrap{
+            position: absolute;
+            top: -30%;
+            animation:drop 25s infinite;
+            &:nth-child(1){
+                left: -4%;
+                transform: rotate(10deg);
+                animation-delay: 4s;
+            }
+            &:nth-child(2){
+                left: 10%;
+                transform: rotate(70deg);
+                animation-delay: 18s;
+            }
+            &:nth-child(3){
+                left: 25%;
+                transform: rotate(-175deg);
+                animation-delay: 16s;
+            }
+            &:nth-child(4){
+                left: 35%;
+                transform: rotate(35deg);
+                animation-delay: 22s;
+            }
+            &:nth-child(5){
+                left: 50%;
+                transform: rotate(-95deg);
+                animation-delay: 13s;
+            }
+            &:nth-child(6){
+                left: 55%;
+                transform: rotate(75deg);
+                animation-delay: .6s;
+            }
+            &:nth-child(7){
+                left: 65%;
+                transform: rotate(-225deg);
+                animation-delay: 4s;
+            }
+            &:nth-child(8){
+                left: 80%;
+                transform: rotate(-125deg);
+                animation-delay: 8s;
+            }
+            &:nth-child(9){
+                left: 95%;
+                transform: rotate(-25deg);
+                animation-delay: 3s;
+            }
+            .heart{
+                max-width: 120px;
+                max-height: 120px;
+                z-index: 2147483647;
+            }
+            @keyframes drop {
+                to{
+                    top: 110%;
+                    transform: rotate(120deg);
+                }
+            }
+    }
+}
+@media only screen and (max-width:600px){
+    .heart{
+        width: 60px;
+        height: 60px;
+    }
+}

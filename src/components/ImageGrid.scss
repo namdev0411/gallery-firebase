@@ -1,0 +1,44 @@
+.image-grid{
+    width: 100vw;
+    margin-top: 20px;
+    box-sizing: border-box;
+    position: relative;
+    .image-wrap{
+        overflow: hidden;
+        height: 300px;
+        background-color: white;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px;
+        transition: 0.35s ease-in-out;
+        &::after{
+            content: '';
+            height: 100%;
+            width: 100%;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#333333",GradientType=1);
+        }
+        .image{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #000;
+            object-fit: cover;
+            transition: .55s ease-in-out;
+            cursor: pointer;
+        }
+    
+    }
+
+}
+@media only screen and(max-width: 676px){
+    .image-grid{
+        .image{
+            max-width: 100% !important;
+            height: auto !important;
+            border: 1px solid #000;
+            object-fit: initial !important;
+        }
+    }
+}

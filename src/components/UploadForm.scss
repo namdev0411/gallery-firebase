@@ -1,0 +1,14 @@
+.UploadForm{
+    display: flex;
+    width: 100vw;
+    margin-bottom: 100px;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .file-input{
+        display: none;
+    }
+
+    position: relative;
+}
