@@ -3,7 +3,6 @@ import UploadForm from './components/UploadForm';
 import './App.scss';
 import ImageGrid from './components/ImageGrid';
 import Model from './components/Model';
-import Footer from './components/Footer';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Top from './components/Top';
@@ -13,7 +12,6 @@ import {Link,Route} from 'react-router-dom';
 import {Switch as SwitchB} from 'react-router-dom';
 import { useTransition, animated, config } from 'react-spring';
 import useFireStore from './hooks/useFireStore';
-import { RotateRight, Translate } from '@material-ui/icons';
 
   function App() {
   const [selectImg, setselectImg] = useState(null);
@@ -29,6 +27,7 @@ import { RotateRight, Translate } from '@material-ui/icons';
         <Route path="/slider" exact>
           <TextAnimate/>
           {docs.length>0 && <Slider docs={docs}/>}
+          <Link className="btn back-btn" to="/">Back</Link>
         </Route>
         <Route path="/" exact>
             <Intro/>
@@ -45,7 +44,7 @@ import { RotateRight, Translate } from '@material-ui/icons';
           <ImageGrid setselectImg={setselectImg}/>
           <Model selectImg={selectImg} setselectImg={setselectImg}/>
           {/* <Footer/> */}
-          <div className="slider">
+          <div className={!duck?"slider":"slider duck"}>
               <Link to="/slider">Slider</Link>
           </div>
         </Route>
@@ -55,22 +54,23 @@ import { RotateRight, Translate } from '@material-ui/icons';
 }
 const Slider = ({docs})=>{
   const [index, set] = useState(0)
-  const transitions = useTransition(docs[index], item => item.id, {
+  const transitions = useTransition(docs[index], item => item.url, {
     from: { opacity: 0 },
     enter: { opacity: 1},
-    leave: { opacity: 0.3},
+    leave: { opacity: 0},
     config: config.molasses,
   })
   useEffect(() => {
-    const interv =  setInterval(() => set(state => (state + 1) % 10), 3000)
+    const interv =  setInterval(() => set(state => (state + 1) % docs.length), 3000)
 
     return()=>clearInterval(interv);
   }, [])
   return transitions.map(({ item, props, key }) => (
-    <animated.div
+    <animated.img
       key={key}
       className="bg"
-      style={{ ...props, backgroundImage: `url(${item.url})`}}
+      src={`${item.url}`}
+      style={{ ...props}}
     />
   ))
 } 
@@ -95,7 +95,7 @@ const TextAnimate = ()=>{
     set([])
     ref.current.push(setTimeout(() => set(['Hello', 'Im', 'Nam']), 1000))
     ref.current.push(setTimeout(() => set(['Wellcome to', 'Gallery']), 3000))
-    ref.current.push(setTimeout(() => set(['Hand up', 'Hand down', 'Han cap','Build','ReactJs']), 5000))
+    ref.current.push(setTimeout(() => set(['Hand up', 'Hand down', 'Hand cap','Build','ReactJs']), 5000))
   }, [])
 
   useEffect(() => void reset(), [])

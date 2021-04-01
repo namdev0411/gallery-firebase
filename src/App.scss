@@ -37,18 +37,21 @@
             color: #000;
             font-size: 20px;
         }
+        &.duck{
+            a{
+                color: #fff;
+            }
+        }
     }
     .bg{
         position: absolute;
-        top: 50%;
-        left: 70%;
-        transform: translateX(-50%) translateY(-50%);
-        width: 50vw;
+        top: 0;
+        transition: all .35s ease;
+        object-fit: cover;
+        right: 10px;
         z-index: 2;
-        min-height: 100vh;
-        background-size: cover;
-        background-position: center;
-        background-clip: border-box;
+        max-width: 700px;
+        height: 100vh;
         will-change: opacity;
         
     }
@@ -67,6 +70,44 @@
         white-space: nowrap;
         cursor: pointer;
         line-height: 80px;
+      }
+      .back-btn{
+          position: absolute;
+          bottom: 30px;
+          left: 50px;
+          animation: smallBig .35s ease-in-out infinite;
+          color: #fff;
+          &::before{
+            content: "";
+            position: absolute;
+            top: -12px;
+            left: -60px;
+            border: 30px;
+            border-style: solid;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            animation: smallBigB .35s ease-in-out infinite;;
+          }
+      }
+
+      @keyframes smallBig {
+        from {
+            transform: translateX(-10px);
+            background-color: red;
+        }
+        to {
+            transform: translateX(0px);
+            background-color: yellow;
+        }
+      }
+      @keyframes smallBigB {
+        from {
+            border-right-color: red;
+        }
+        to {
+            border-right-color: yellow;
+        }
       }
 }
 @media only screen and (max-width: 600px) {
